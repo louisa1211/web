@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Zi-You Wang</title>
+    <link rel="stylesheet" href="./style2.css">
+</head>
+<body>
+
+    <!-- Menu-->
+    <div class="menu_container">
+        <div class="content">
+            <div class="circle">
+                <h4>&nbsp;菜單&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>Menu</h4>
+                <a href="#port" class="sub-item port"><h5 style="transform:rotate(-90deg);">&nbsp;&nbsp;&nbsp;作品<br>Portfolio</h5></a>
+                <a href="#about" class="sub-item about"><h5>&nbsp;&nbsp;關於<br>About</h5></a>
+                <a href="#contact" class="sub-item contact" ><h5 style="transform:rotate(90deg);">&nbsp;&nbsp;&nbsp;聯絡<br>Contact</h5></a>
+            </div>
+        </div>
+    </div>
+    <!-- section1 -->
+    <div class="sec1-title"></div>
+    <img src="./image/bg/img_sec1.png" style="width:300px;height:1500px;margin:0px 0 -200px 400px;">
+    <img src="./image/bg/brush.png"style="width:150px;height:300px;margin:700px 0 300px 200px;">
+    <img id="paintImage" src="./image/bg/paint.png" style="width:300px;height:300px;margin:0px 200px -300px 0px;">
+    <div class="sec1-ground">
+        <!-- section2 -->
+        <div class="bg1" id="port">
+            <h2>作品集<br>Portfolio</h2>
+                <div class="sec2">
+                    <div class="slideshow-container">
+                            <div class="mySlides slide1">
+                                <img src="./image/Maya1.png">
+                            </div>
+                            <div class="mySlides slide1">
+                                <img src="./image/Maya2.png">
+                            </div>
+                            <div class="mySlides slide1">
+                                <img src="./image/Maya3.png">
+                            </div>
+                            <div class="mySlides slide1">
+                                <img src="./image/blender.png">
+                            </div>
+                            <div class="mySlides slide1">
+                                <img src="./image/gm.png">
+                            </div>
+                            <div class="mySlides slide1">
+                                <img src="./image/AI.png">
+                            </div>
+                        <a class="prev" onclick="plusSlides(-1)">❮</a>
+                        <a class="next" onclick="plusSlides(1)">❯</a>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <!-- section3 -->
+    <div class="sec3" >
+        <div class="box1"> 
+            <div class="dashed-box">
+                <div class="sec3-img" id="about"></div>
+                    <video controls style="width:100%; height:100%;" class="slideVideo">
+                        <source src="./image/AE_2.mp4" type="video/mp4">
+                    </video>
+            </div>
+        </div>
+        <div class="box2">
+            <video controls style="width:100%; height:100%;" class="slideVideo">
+                <source src="./image/AE_1.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="box3" id="ground">
+            <div class="dashed-box">
+                <video controls style="width:100%; height:100%;" class="slideVideo">
+                    <source src="./image/AE_3.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </div>
+    <!-- footer -->
+    <a href="https://www.instagram.com/wzy.___?igsh=YmZtaTNvdTdtNXFy"><h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>&nbsp;&nbsp;了解更多<br>Learn more</h3></a>
+    <div class="footer" id="contact">
+        <a href="https://www.instagram.com/wzy.___?igsh=YmZtaTNvdTdtNXFy" class="IGbutton" target="_blank">
+            <img src="./image/bg/ig.png" alt="Instagram">
+        </a>
+        <img src="./image/bg/img_footer.png" style="width:700px;height:600px;margin:100px 0px 0 900px ;">
+
+    </div>
+<button id="backToTopBtn" onclick="scrollToTop()"></button>
+
+    <script>
+        // 回頂部
+ document.addEventListener("DOMContentLoaded", function () {
+    // 取得按鈕元素
+    var btn = document.getElementById("backToTopBtn");
+
+    // 捲軸滾動時，檢查捲軸位置，決定按鈕是否應該停留顯示
+    window.onscroll = function () {
+        console.log(window.scrollY, document.documentElement.scrollTop);
+        if (window.scrollY > 20 || document.documentElement.scrollTop > 20) {
+            btn.style.display = "block";
+        } else {
+            btn.style.display = "none";
+        }
+    };
+});
+
+// 回頂部
+function scrollToTop() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
+        //背景切換
+        window.addEventListener('scroll', function() {
+            var bg1 = document.querySelector('.bg1');
+            var paintImage = document.getElementById('paintImage');
+            var portPosition = document.getElementById('port').getBoundingClientRect().top;
+            var groundPosition = document.getElementById('ground').getBoundingClientRect().top;
+
+            // 如果位置超過 #port 的位置，顯示 bg1，切换 paint.png
+            if (window.scrollY > portPosition && window.scrollY < groundPosition) {
+                bg1.style.opacity = 0;
+                paintImage.src = './image/bg/bucket.png';
+                paintImage.style.width = '200px'; // 恢復原始寬度
+                paintImage.style.height = '250px'; // 恢復原始高度
+           paintImage.style.transform = 'rotate(0deg)';
+            } else {
+                bg1.style.opacity = 1;
+                paintImage.src = './image/bg/paint.png';
+                paintImage.style.width = '250px'; // 恢復原始寬度
+                paintImage.style.height = '200px';
+            }
+        });
+        //幻燈片切換
+        let slideIndex = 1;
+
+        // Function to show slides
+        function showSlides(n) {
+            let i;
+            let slides = document.querySelectorAll('.mySlides');
+
+            if (n > slides.length) {
+                slideIndex = 1;
+            }
+
+            if (n < 1) {
+                slideIndex = slides.length;
+            }
+
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            slides[slideIndex - 1].style.display = "block";
+        }
+
+        // Function to handle next/prev slide button clicks
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        // Call showSlides to initialize
+        showSlides(slideIndex);
+    </script>
+
+</body>
+</html>
